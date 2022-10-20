@@ -1,7 +1,38 @@
-<p><strong>Reviews</strong></p>
+<h1>Restaurants</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%=@restaurant.name%>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%=@restaurant.address%>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%=@restaurant.phone_number%>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%=@restaurant.category%>
+</p>
+
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %> |
+<%= link_to 'Leave a Review', new_restaurant_review_path(@restaurant) %>
+
 <ul class="list-group">
   <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
+    <li class="list-group-item">
+      <%= review.content %>
+      <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </li>
   <% end %>
 </ul>
-<br>
